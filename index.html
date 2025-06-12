@@ -51,14 +51,24 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>EB-2 NIW Visa Bulletin Trends</h1>
-        <div class="chart-container">
+    <div class="container" style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; align-items: flex-start;">
+        <h1 style="width: 100%; text-align: center; color: #333; margin-bottom: 18px;">EB-2 NIW Visa Bulletin Trends</h1>
+        <div class="chart-container" style="flex: 0 1 600px;">
             <canvas id="visaChart"></canvas>
         </div>
-        <div class="legend">
-            <span><span class="legend-color" style="background-color: #4CAF50;"></span>Final Action Date</span>
-            <span><span class="legend-color" style="background-color: #2196F3;"></span>Dates for Filing</span>
+        <div class="info-panel" style="flex: 0 1 280px; background: #f8f9fa; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); padding: 24px 20px; font-size: 1rem; color: #333; min-width: 220px; max-width: 320px; border: 1px solid #e0e0e0; margin-left: 0;">
+            <h3 style="margin-top: 0; font-size: 1.1em; color: #222;">What do these metrics mean?</h3>
+            <span style="display: flex; align-items: center; gap: 7px; margin-bottom: 2px;"><span style="display:inline-block;width:14px;height:14px;background:#2196F3;border-radius:3px;"></span><strong>Dates for Filing</strong></span>
+            <span style="font-size: 0.97em;">Date to file I-485 early (if allowed)<br/>Submit I-485, get EAD/AP while waiting</span>
+            <hr style="margin: 12px 0;"/>
+            <span style="display: flex; align-items: center; gap: 7px; margin-bottom: 2px;"><span style="display:inline-block;width:14px;height:14px;background:#4CAF50;border-radius:3px;"></span><strong>Final Action Date</strong></span>
+            <span style="font-size: 0.97em;">Date for actual green card issuance<br/>Green card approval (I-485 adjudication)</span>
+        </div>
+        <div style="width: 100%; text-align:center; margin: 16px 0 0 0; font-size: 0.97rem; color: #888;">
+            <a href="https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin.html" target="_blank" rel="noopener noreferrer" style="color: #888; text-decoration: underline; font-size: 0.97em;">
+                Source: U.S. Department of State Visa Bulletin
+                <svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' style='vertical-align:middle;margin-left:3px;' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6m7-1V4a2 2 0 0 0-2-2h-7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-7a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-7z'/></svg>
+            </a>
         </div>
     </div>
     <script src="data.js"></script>

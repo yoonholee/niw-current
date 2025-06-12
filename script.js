@@ -107,6 +107,17 @@ async function createChart() {
                         above: 'rgba(76, 175, 80, 0.15)',
                         below: 'rgba(255,0,0,0.05)'
                     },
+                    pointRadius: 4,
+                    pointHoverRadius: 8,
+                    pointBackgroundColor: '#4CAF50',
+                    pointBorderColor: '#000',
+                    pointBorderWidth: 2,
+                    pointStyle: 'circle',
+                    pointHoverBackgroundColor: '#388E3C',
+                    pointShadowOffsetX: 1,
+                    pointShadowOffsetY: 1,
+                    pointShadowBlur: 4,
+                    pointShadowColor: 'rgba(76,175,80,0.25)',
                     order: 2,
                 },
                 {
@@ -116,6 +127,17 @@ async function createChart() {
                     backgroundColor: 'rgba(33, 150, 243, 0.1)',
                     tension: 0.4,
                     fill: false,
+                    pointRadius: 4,
+                    pointHoverRadius: 8,
+                    pointBackgroundColor: '#2196F3',
+                    pointBorderColor: '#000',
+                    pointBorderWidth: 2,
+                    pointStyle: 'circle',
+                    pointHoverBackgroundColor: '#1565C0',
+                    pointShadowOffsetX: 1,
+                    pointShadowOffsetY: 1,
+                    pointShadowBlur: 4,
+                    pointShadowColor: 'rgba(33,150,243,0.25)',
                     order: 3,
                 }
             ]
@@ -186,12 +208,15 @@ async function createChart() {
                     max: new Date('2025-12-31'),
                     time: {
                         unit: 'month',
+                        stepSize: 3,
                         displayFormats: {
                             month: 'MMM yyyy'
                         }
                     },
                     grid: {
-                        display: true
+                        display: true,
+                        color: 'rgba(180,180,180,0.18)',
+                        lineWidth: 1
                     },
                     title: {
                         display: false
@@ -203,12 +228,15 @@ async function createChart() {
                     max: new Date('2025-12-31'),
                     time: {
                         unit: 'month',
+                        stepSize: 3,
                         displayFormats: {
                             month: 'MMM yyyy'
                         }
                     },
                     grid: {
-                        display: true
+                        display: true,
+                        color: 'rgba(180,180,180,0.18)',
+                        lineWidth: 1
                     },
                     title: {
                         display: false

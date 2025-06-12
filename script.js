@@ -1,11 +1,15 @@
-// Function to parse date string to Date object, using bulletin month if 'C'
+const MONTH_NAMES = [
+    'January','February','March','April','May','June','July','August','September','October','November','December'
+];
+
+function getMonthNum(month) {
+    return MONTH_NAMES.indexOf(month) + 1;
+}
+
 function parseDate(dateStr, monthLabel) {
     if (dateStr === 'C' || !dateStr) {
-        // Use the bulletin month as the date (first of the month)
         const [month, year] = monthLabel.split(' ');
-        const monthNum = [
-            'January','February','March','April','May','June','July','August','September','October','November','December'
-        ].indexOf(month) + 1;
+        const monthNum = getMonthNum(month);
         return new Date(`${year}-${String(monthNum).padStart(2, '0')}-01`);
     }
     if (dateStr === 'U') return null;
@@ -14,13 +18,10 @@ function parseDate(dateStr, monthLabel) {
 
 function getMonthDate(monthLabel) {
     const [month, year] = monthLabel.split(' ');
-    const monthNum = [
-        'January','February','March','April','May','June','July','August','September','October','November','December'
-    ].indexOf(month) + 1;
+    const monthNum = getMonthNum(month);
     return new Date(`${year}-${String(monthNum).padStart(2, '0')}-01`);
 }
 
-// Function to format date for display
 function formatDate(date) {
     if (!date) return '';
     return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
@@ -35,7 +36,7 @@ function daysBetween(date1, date2) {
 function daysToYearsMonths(days) {
     if (!days) return '';
     const years = Math.floor(days / 365);
-    const months = Math.floor((days % 365) / 30.44); // average month length
+    const months = Math.floor((days % 365) / 30.44);
     let result = '';
     if (years > 0) result += `${years} year${years > 1 ? 's' : ''}`;
     if (months > 0) {
@@ -45,17 +46,12 @@ function daysToYearsMonths(days) {
     return result || '0 months';
 }
 
-// Function to process data
 async function processData() {
     try {
-        // Use the data from data.js
         return visaData.sort((a, b) => {
-            // Sort by year and month
             const getYearMonth = (m) => {
                 const [month, year] = m.month.split(' ');
-                return [parseInt(year), [
-                    'January','February','March','April','May','June','July','August','September','October','November','December'
-                ].indexOf(month)];
+                return [parseInt(year), getMonthNum(month) - 1];
             };
             const [aYear, aMonth] = getYearMonth(a);
             const [bYear, bMonth] = getYearMonth(b);
@@ -67,14 +63,8 @@ async function processData() {
     }
 }
 
-// Function to create the chart
 async function createChart() {
     const data = await processData();
-    const months = data.map(d => d.month);
-    const minDate = new Date('2020-01-01');
-    const maxDate = new Date('2025-12-31');
-
-    // Prepare data for the two lines
     const finalActionDates = data.map(d => parseDate(d.final_action, d.month));
     const datesForFilingDates = data.map(d => parseDate(d.dates_for_filing, d.month));
     const monthDates = data.map(d => getMonthDate(d.month));
@@ -243,10 +233,8 @@ async function createChart() {
                     }
                 }
             },
-            aspectRatio: 1  // This ensures the chart is a perfect square
         }
     });
 }
 
-// Initialize the chart when the page loads
 document.addEventListener('DOMContentLoaded', createChart);

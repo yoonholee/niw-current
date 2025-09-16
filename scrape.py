@@ -187,10 +187,15 @@ def main() -> None:
             print(f"SKIPPING duplicate month: {m}")
 
     # Save to data.js (JS assignment)
+    import json
     with open("data.js", "w") as f:
-        f.write("const visaData = ")
-        f.write(str(deduped).replace("'", '"'))
-        f.write(";\n")
+        f.write("const visaData = [\n")
+        for i, row in enumerate(deduped):
+            f.write("  " + json.dumps(row))
+            if i < len(deduped) - 1:
+                f.write(",")
+            f.write("\n")
+        f.write("];\n")
 
     print(f"\nTotal bulletins processed: {len(rows)}")
     print(f"Total unique months: {len(deduped)}")
